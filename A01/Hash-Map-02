@@ -1,0 +1,47 @@
+import java.util.*;
+
+enum Shape {
+    CIRCLE, SQUARE, TRIANGLE
+}
+
+enum Color {
+    RED, GREEN, BLUE, YELLOW
+}
+
+class GraphicObject {
+    private Shape shape;
+    private int size;
+    private Color color;
+    private int x;
+    private int y;
+
+    public GraphicObject() {
+        Random random = new Random();
+        shape = Shape.values()[random.nextInt(Shape.values().length)];
+        size = random.nextInt(100) + 1; // Random size between 1 and 100
+        color = Color.values()[random.nextInt(Color.values().length)];
+        x = random.nextInt(100);
+        y = random.nextInt(100);
+    }
+
+    @Override
+    public String toString() {
+        return "Shape: " + shape + ", Size: " + size + ", Color: " + color + ", Position: (" + x + ", " + y + ")";
+    }
+}
+
+public class GraphicObjectCollection {
+    public static void main(String[] args) {
+        Map<Integer, GraphicObject> graphicObjects = new HashMap<>();
+
+        // Populate the collection with random graphic objects
+        for (int i = 1; i <= 5; i++) { // You can change the number of objects as needed
+            graphicObjects.put(i, new GraphicObject());
+        }
+
+        // Print the string version of the objects
+        for (Map.Entry<Integer, GraphicObject> entry : graphicObjects.entrySet()) {
+            System.out.println("Object " + entry.getKey() + ": " + entry.getValue());
+        }
+    }
+}
